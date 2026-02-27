@@ -4,32 +4,44 @@ import asyncio
 import logging
 
 from configs import token
-from handler import start, status
+from handler import start, status, socket_off, socket_on, debug_devices
 from logger import setup_logger
 
 setup_logger()
 logger = logging.getLogger(__name__)
 
 
-def get_going():
+def main():
+    print("Start execution")
+
     try:
+        print(f"There is token - {token[:5]}")
         # create app
         app = Application.builder().token(token).build()
 
+        print("5. Добавляем обработчики...")
         # register handler
         app.add_handler(CommandHandler("start", start))
         app.add_handler(CommandHandler("status", status))
+        app.add_handler(CommandHandler("socket_on", socket_on))
+        app.add_handler(CommandHandler("socket_off", socket_off))
+        app.add_handler(CommandHandler("debug", debug_devices))
+
 
         logger.info("Инициализация успешна")
-        app.run_polling()
+        try:
+            app.run_polling()
+        except Exception as e:
+            logger.exception("Критическая ошибка при работе бота")
 
     except TelegramError as er:
         logger.error(f"Ошибка {er}")
     except Exception as er:
         logger.error(f"Критичная ошибка - {er}", exc_info=True)
 
-if __name__ == "__get_going__":
-    get_going()
+
+if __name__ == "__main__":
+    main()
 #
 # @HomeAssistant_Bot.message_handler(commands=['start'])
 # def bot_start(message):
