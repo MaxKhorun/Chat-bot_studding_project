@@ -4,7 +4,8 @@ import asyncio
 import logging
 
 from configs import token
-from handler import start, status, socket_off, socket_on, debug_devices
+from handler import socket_off, socket_on, debug_devices, startEihgtMarch, next, start, napoleon_forever, go_ahead, \
+    i_m_here, go, finalStep, desert
 from logger import setup_logger
 
 setup_logger()
@@ -22,10 +23,19 @@ def main():
         print("5. Добавляем обработчики...")
         # register handler
         app.add_handler(CommandHandler("start", start))
-        app.add_handler(CommandHandler("status", status))
+        # app.add_handler(CommandHandler("status", status))
         app.add_handler(CommandHandler("socket_on", socket_on))
         app.add_handler(CommandHandler("socket_off", socket_off))
         app.add_handler(CommandHandler("debug", debug_devices))
+        app.add_handler(CommandHandler("8_marta", startEihgtMarch))
+        # app.add_handler(CommandHandler("help", help))
+        app.add_handler(CommandHandler("next", next))
+        app.add_handler(CommandHandler("napoleon_forever", napoleon_forever))
+        app.add_handler(CommandHandler("go_ahead", go_ahead))
+        app.add_handler(CommandHandler("i_m_here", i_m_here))
+        app.add_handler(CommandHandler("go", go))
+        app.add_handler(CommandHandler("ready_for_desert", desert))
+        app.add_handler(CommandHandler("final", finalStep))
 
 
         logger.info("Инициализация успешна")
