@@ -5,7 +5,7 @@ import logging
 
 from configs import token
 from handler import socket_off, socket_on, debug_devices, startEihgtMarch, next, start, napoleon_forever, go_ahead, \
-    i_m_here, go, finalStep, desert
+    i_m_here, go, finalStep, desert, carHint
 from logger import setup_logger
 
 setup_logger()
@@ -36,6 +36,7 @@ def main():
         app.add_handler(CommandHandler("go", go))
         app.add_handler(CommandHandler("ready_for_desert", desert))
         app.add_handler(CommandHandler("final", finalStep))
+        app.add_handler(CommandHandler("hint", carHint))
 
 
         logger.info("Инициализация успешна")

@@ -118,11 +118,32 @@ async def next(update: Update, context: ContextTypes.DEFAULT_TYPE):
         """
         Теперь точно пора одеваться для путешествия, из которого вернемся вечером.\nСобираем сумки, закрываем дверь и выбегаем на улицу к машине!
         """,
-        "Как доберётесь, загляните в бардачок. Когда всё найдете и будете готовы двигаться дальше, кликайте снова сюда - /go! 👍"
+        "Открываем - смотрим, что нас там ждет. 😉",
+        "Как что-то найдёте жмите - /carHint! 👍"
     ]
     await update.message.reply_text(
         f"Отлично! 🌷\n"
         "Это нам, возможно, понадобится -> берем с собой на всякий случай.\n"
+    )
+    await asyncio.sleep(1.5)
+    for t in messages:
+        await context.bot.send_message(
+            chat_id=update.effective_chat.id,
+            text=t
+        )
+        await asyncio.sleep(1)
+
+async def carHint(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    user = update.effective_user
+    logger.info(f"Пользователь {user.first_name} (id: {user.id}) клинул /carHint")
+    messages = [
+        "И подумаем... 😎",
+        "Точно ли с машиной мы закончили? =)",
+        "Загляните-ка в бардачок. 😉 Жмите /go, когда поймете, что двигаемся на следующий этап приключения."
+    ]
+    await update.message.reply_text(
+        "Нашли? Посмотрели?\n"
+        "Если нет, то давайте смело открывайте."
     )
     await asyncio.sleep(1.5)
     for t in messages:
