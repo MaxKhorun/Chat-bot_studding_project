@@ -36,7 +36,7 @@ def main():
         app.add_handler(CommandHandler("go", go))
         app.add_handler(CommandHandler("ready_for_desert", desert))
         app.add_handler(CommandHandler("final", finalStep))
-        app.add_handler(CommandHandler("hint", carHint))
+        app.add_handler(CommandHandler("carHint", carHint))
 
 
         logger.info("Инициализация успешна")
