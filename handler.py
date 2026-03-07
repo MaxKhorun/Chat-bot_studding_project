@@ -102,12 +102,12 @@ async def startEihgtMarch(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(
         f"Начинаем поиски!\n"
         "Думаю, что нужно проверить балкон для начала 🤔.\n"
-        "Там точно что-то есть 😉.\n"
+        "Радужный кот не так прост, как кажется 🤔😉.\n"
     )
     await asyncio.sleep(1.5)
     await context.bot.send_message(
         chat_id=update.effective_chat.id,
-        text="Как найдете, рассмотрите. Когда захотите идти дальше, кликайте вот это - /next 👍"
+        text="Когда будете готовы идти дальше, кликайте вот это - /next 👍"
     )
 
 async def next(update: Update, context: ContextTypes.DEFAULT_TYPE):
